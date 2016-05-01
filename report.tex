@@ -72,15 +72,17 @@ The assignment was described on the course homepage
 \cite{sensornetwork}. 
 
 \subsection{General Design Considerations}
-It seems a reasonable approach to design the application as a model of a
-real sensor network as described in Braginsky and Estrin
-\cite{braginsky2002}. In particular should responsibilites
-and collaborations somehow coincide with those of a real sensor
-network. The realworld entities modelled in this assignment can be classified
-in two groups: Physical components such as the sensor nodes and
-information packages travelling the network, such as the queries and
-the agents or specifically for the model. Further, is also a third
-type, the environment entity which simulates the real surrounding.
+In object oriented software design, we aspire to build 
+a model representation of the real world system \cite{roleplay}.  
+Here the real world system is a sensor network as described in
+Braginsky and Estrin \cite{braginsky2002}. Classes and their relations
+and collaborations are supposed to coincide with those of the real
+world entites, here in a sensor network. The realworld entities
+modelled in this assignment can be classified in two groups: Physical
+components such as the sensor nodes and information packages
+travelling the network, such as the queries and agents. Further, is
+also a third type, the environment entity which simulates the real
+surrounding.
 
 
 
@@ -106,19 +108,38 @@ type, the environment entity which simulates the real surrounding.
 
 
 \section{Initialization and State Stepping}
-Parameters that are needed to create nodes have to be determined.
+\subsection{Overview}
+First parameters that are needed to create nodes have to be determined.
 That includes the position, and the probability to create agents after
-an event happens. 
-Nodes have to be created and positioned. 
-Nodes have to be initialized to know their neighbours
-Experimental parameters for the environment have to be determined.
-These include, which nodes will create queries. 
+an event happens. Then nodes can be created and
+positioned. Afterwards, nodes have to be initialized to know their
+neighbours. According to Braginsky and Estrin \cite{braginsky2002},
+composing the neighbour list could happend either as an initial
+startup phase, but if nodes are assumed non-static, also
+continuous. Here nodes were assumed static. Finally, experimental
+parameters for the environment need to be initialized. These are
+parameters such as which nodes will create queries and in which
+frequency. But also the probabilty of events and how the node to
+experience them is selected. 
+
+Setup/Main instantiates the Environment, then instantiates the Nodes
+with coordinates and places them in the environment. On
+instantiation, the probability for agent creation is set as attribut
+in each node.
+
+In each time step, the environment cycles twice through all
+nodes. First random generation of an event, then to handle the messages
+(agents and queries). Messages are put in a queue in the node. If
+a node has either sent, received, or instantiated a new message, a
+busy flag is set, so that no other operation from outside
+can be accepted.   
 
 
-The nodes need to know their neighbours to become operational. To know
-the neighbours, all nodes need to have a position. Either the
-neighbours are just defined as a list, or a process that determines
-the neighbours based on coordinates and sender/receiver range
+
+
+
+
+
 
 \section{Testing Framework}
 
