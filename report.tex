@@ -69,7 +69,22 @@ Lorenz Gerber ({\tt{dv15lgr@cs.umu.se}}, {\tt{lozger03@student.umu.se}})
 
 \section{Introduction} 
 The assignment was described on the course homepage
-\cite{sensornetwork}. \textit{Unified Modelling Language}
+\cite{sensornetwork}. 
+
+\subsection{General Design Considerations}
+It seems a reasonable approach to design the application as a model of a
+real sensor network as described in Braginsky and Estrin
+\cite{braginsky2002}. In particular should responsibilites
+and collaborations somehow coincide with those of a real sensor
+network. The realworld entities modelled in this assignment can be classified
+in two groups: Physical components such as the sensor nodes and
+information packages travelling the network, such as the queries and
+the agents or specifically for the model. Further, is also a third
+type, the environment entity which simulates the real surrounding.
+
+
+
+\textit{Unified Modelling Language}
 (\textit{UML}) and \textit{Class Responsibility Collaborator}
 (\textit{CRC}) diagrams were composed according to Börstler
 \cite{roleplay}. The theory of rumour routing is described by Braginsky
@@ -91,6 +106,19 @@ The assignment was described on the course homepage
 
 
 \section{Initialization and State Stepping}
+Parameters that are needed to create nodes have to be determined.
+That includes the position, and the probability to create agents after
+an event happens. 
+Nodes have to be created and positioned. 
+Nodes have to be initialized to know their neighbours
+Experimental parameters for the environment have to be determined.
+These include, which nodes will create queries. 
+
+
+The nodes need to know their neighbours to become operational. To know
+the neighbours, all nodes need to have a position. Either the
+neighbours are just defined as a list, or a process that determines
+the neighbours based on coordinates and sender/receiver range
 
 \section{Testing Framework}
 
