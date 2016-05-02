@@ -72,17 +72,15 @@ The assignment was described on the course homepage
 \cite{sensornetwork}. 
 
 \subsection{General Design Considerations}
-In object oriented software design, we aspire to build 
-a model representation of the real world system \cite{roleplay}.  
+In object oriented software design, it is common to build 
+a model representation of the real world system \cite{roleplay} by
+defining classes the correspond to the real world systems' entities.  
 Here the real world system is a sensor network as described in
-Braginsky and Estrin \cite{braginsky2002}. Classes and their relations
-and collaborations are supposed to coincide with those of the real
-world entites, here in a sensor network. The realworld entities
-modelled in this assignment can be classified in two groups: Physical
-components such as the sensor nodes and information packages
-travelling the network, such as the queries and agents. Further, is
-also a third type, the environment entity which simulates the real
-surrounding.
+Braginsky and Estrin \cite{braginsky2002}. The realworld entities
+modelled in this assignment can be classified in two main groups: Physical
+components such as the sensor nodes and non-physical ones, information packages
+travelling the network, such as the queries and agents. Further, a third type, 
+the environment entity simulates the real surrounding.
 
 
 
@@ -127,8 +125,19 @@ with coordinates and places them in the environment. On
 instantiation, the probability for agent creation is set as attribut
 in each node.
 
-In each time step, the environment cycles twice through all
-nodes. First random generation of an event, then to handle the messages
+In each time step, the environment cycles through all
+nodes. At each node a nubmer of possbile actions are considered and if
+viable performed. These include: creating an agent, creating a query,
+receiving a query, receiving an agent, sending a query, sending an
+agent.
+
+From the description, it is not clear if creating an agent or a query
+involves also sending it in the same time step. This behaviour needs
+to be defined. What happens if a node has one or more messages in the
+queue, detects an event and is supposed to send an agent. Does the
+agent end up in the queue? Same question for a query.
+
+First random generation of an event, then to handle the messages
 (agents and queries). Messages are put in a queue in the node. If
 a node has either sent, received, or instantiated a new message, a
 busy flag is set, so that no other operation from outside
