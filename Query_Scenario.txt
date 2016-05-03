@@ -1,0 +1,23 @@
+﻿Query scenario
+
+1
+Environment tells QueryNode to generate a query and gives it an ID
+QueryNode generates a query through Query
+
+2
+QueryNode checks if recipient Node is busy
+QueryNode sends the query to recipient node
+Query adds Node to stack
+
+3
+Query checks recipient node's event info
+
+4
+Repeat until 
+Query finds Event
+Query adds event to self
+
+5
+Query walks back to QueryNode
+
+
