@@ -151,7 +151,189 @@ a node has either sent, received, or instantiated a new message, a
 busy flag is set, so that no other operation from outside
 can be accepted.   
 
+\begin{verbatim}
+Main
+{
 
+  //Globals
+  NODES_X = 50
+  NODES_Y = 50
+  NO_NODES = NODOES_X * NODES_Y
+  NEW_EVENTS = 0.0001
+  NODE_RANGE = 
+  TTL_AGENT = 50
+  TTL_QUERY = 50
+  QUERY_NODES = 4
+  QUERY_PERIODICITY = 400
+
+  // Create Environment
+  myEnv = Environment()
+
+
+  // Create and position Nodes
+  For (x = 1:NODES_X)
+  {
+    For (y = 1 -> NODES_Y)
+    {
+      myEnv.addNode(Node(Position(x, y),0.5, NULL))
+    }
+  }
+
+  // Set Query nodes
+  queryNodeIds[] = sample(1, NO_NODES, QUERY_NODES)
+  For (i = 1:QUERY_NODES)
+  {
+    myEnv.nodes.getNode(queryNodeIds[i]).setPeriodQuery(QUERY_PERIODICITY)
+  }
+
+
+  // Create Neighbour list
+  // For every node
+  For(nodes_create_list = 1:NO_NODES)
+  {
+    // create neighbour list 
+
+    For(nodes_check_distance = 1:NO_NODES)
+    {
+      // detectNeighbour checks distance and adds node id to neighbour
+if in range
+
+      myEnv.nodes.getNode(nodes_create_list).detectNeighbour(myEnv.nodes.getNode(nodes_check_distance))
+    }
+  }
+
+
+  //
+  For(timesteps 1:10000)
+  {
+    myEnv.advanceTime()
+  }
+}
+\end{verbatim}
+
+bla bla bla
+
+\begin{verbatim}
+
+Class Environment
+{
+
+  int time
+  ArrayList<Node> nodes
+
+  Environment(){
+    
+    new Environment
+  }
+
+  advanceTimer(){
+    //id 1:NO_NODES){
+    detectEvent(node_id)
+    makeMove(node_id)
+  }
+}
+\end{verbatim}
+
+bla bla bal
+
+\begin{verbatim}
+
+Class Node
+{
+  detectEvent()
+  {
+
+  randomFunction(PROB_NEW_EVENTS){
+  eventMap.add(Event(), self.nodeId)
+  }
+
+  makeMove()
+  {
+
+  // new event? (detectEvent())
+    // Random function to create Agent
+  // New Query?
+    //put query on message queue
+  // Do we have a message on Message Queue
+    // Do messageAction()
+    // BusyState, have we already done our move
+    // if we can send, send message
+
+  // reduce queryPeriodicityCounter by 1
+  }
+
+  sendMessage()
+  {
+  // find out receiver
+    // Check type of message
+      // if message "Query"
+        //check Query status (search/track/homing)
+    // is receiver free 
+      // send message
+      // call receiveMessage of receiver
+      // set BusyState
+  }
+
+
+  receiveMessage()
+  {
+  // Add message to messageQueue
+  // set BusyState
+  // is Message Agent?
+    // call Event Increment distance 
+  }
+}
+
+\end{verbatim}
+
+bla bla bla
+
+\begin{verbatim}
+
+Class Message
+{
+
+  messageAction()
+
+}
+
+
+Class Query
+{
+
+  queryAction()
+  {
+  // checkMode
+
+    //// Search Mode
+    // check eventId in Node eventMap
+    // if path found
+      // switch mode
+
+    //// Track Mode
+    // check destination reached
+      // switch mode
+
+    //// Homing Mode
+    // check start reached / is stack empty
+      // exclaim Event(Node Position, zeroTime, NodeId)
+  }
+}
+
+
+Class Agent
+{
+  agentAction()
+  {
+
+  // compare and adjust eventMaps between agent and node
+  // check TTL
+   // decrement TTL
+  }
+
+}
+
+\end{verbatim}
 
 
 
